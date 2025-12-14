@@ -55,7 +55,11 @@ export default function BookingModal({
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
                         className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                                     w-full max-w-md bg-white rounded-3xl shadow-2xl z-50 p-6"
+                                    w-full max-w-md rounded-3xl shadow-2xl z-50 p-6"
+						style={{
+                            backgroundColor: theme.background.basic,
+                            borderRadius: theme.borderRadius
+                        }}
                     >
                         {isBooked ? (
                             <div className="text-center py-8">
@@ -103,11 +107,6 @@ export default function BookingModal({
                                     <div>
                                         <p className="text-sm text-gray-500">Prix</p>
                                         <p className="font-semibold text-xl">{selectedInstance?.price}€</p>
-                                    </div>
-
-                                    <div>
-                                        <p className="text-sm text-gray-500">Places restantes</p>
-                                        <p className="font-semibold">{selectedInstance?.spotsRemaining}</p>
                                     </div>
                                 </div>
 

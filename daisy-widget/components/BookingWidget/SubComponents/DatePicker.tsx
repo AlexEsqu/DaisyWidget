@@ -72,8 +72,8 @@ export default function DatePicker(
                                 ${!isAvailable ? 'opacity-50 cursor-not-allowed' : ''}
                             `}
                             style={{
-                                backgroundColor: isSelected ? `${theme.colors.primary}15` : 'white',
-                                borderColor: isSelected ? theme.colors.primary : '#e5e7eb',
+                                backgroundColor: isSelected ? `${theme.colors.primary}15` : `${theme.background.basic}`,
+                                borderColor: isSelected ? theme.colors.primary : `${theme.colors.primary}15`,
                             }}
                         >
 
@@ -97,7 +97,6 @@ export default function DatePicker(
 
 									{/* Price */}
                                     <div className="flex items-center gap-1">
-                                        <Euro size={16} style={{ color: theme.colors.secondary  }} />
                                         <span className="font-semibold">{instance.price}€</span>
                                     </div>
 

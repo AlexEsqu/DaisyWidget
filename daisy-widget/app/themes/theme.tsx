@@ -8,7 +8,13 @@ const coralTealTheme: Partial<Theme> = {
     secondary: '#4ECDC4',
     accent: '#95E1D3'
   },
-  font: 'poppins'
+  background: {
+    basic: '#FFFFFF',
+    heavy: '#F5F5F5',
+  },
+  fontName: 'poppins',
+  fontColor: '#2C2C2C',
+  fontColorLight: '#999999'
 };
 
 // Theme 2: Deep Purple & Gold
@@ -18,7 +24,13 @@ const purpleGoldTheme: Partial<Theme> = {
     secondary: '#F4A261',
     accent: '#E76F51'
   },
-  font: 'montserrat'
+  background: {
+    basic: '#FAF6F1',
+    heavy: '#F5EFE7',
+  },
+  fontName: 'montserrat',
+  fontColor: '#3D2817',
+  fontColorLight: '#A89080'
 };
 
 // Theme 3: Modern Blue & Orange
@@ -28,7 +40,13 @@ const blueOrangeTheme: Partial<Theme> = {
     secondary: '#FF8C42',
     accent: '#2A9D8F'
   },
-  font: 'inter'
+  background: {
+    basic: '#F0F7FF',
+    heavy: '#E8F1FF',
+  },
+  fontName: 'inter',
+  fontColor: '#1A1A2E',
+  fontColorLight: '#8B92A9'
 };
 
 // Theme 4: Minimalist Gray & Accent
@@ -38,7 +56,13 @@ const minimalistTheme: Partial<Theme> = {
     secondary: '#E74C3C',
     accent: '#3498DB'
   },
-  font: 'roboto'
+  background: {
+    basic: '#FFFFFF',
+    heavy: '#F8F9FA',
+  },
+  fontName: 'roboto',
+  fontColor: '#2C3E50',
+  fontColorLight: '#95A5A6'
 };
 
 // Theme 5: Nature Green & Brown
@@ -48,7 +72,13 @@ const natureTheme: Partial<Theme> = {
     secondary: '#D4A574',
     accent: '#6B8E23'
   },
-  font: 'montserrat'
+  background: {
+    basic: '#F5F9F0',
+    heavy: '#EBF3E3',
+  },
+  fontName: 'montserrat',
+  fontColor: '#1B3D0F',
+  fontColorLight: '#7A9B6F'
 };
 
 // Theme 6: Sunset Pink & Purple
@@ -58,5 +88,11 @@ const sunsetTheme: Partial<Theme> = {
     secondary: '#FFA500',
     accent: '#9D4EDD'
   },
-  font: 'poppins'
+  background: {
+    basic: '#FFF5FA',
+    heavy: '#FFE8F5',
+  },
+  fontName: 'poppins',
+  fontColor: '#4A1F5C',
+  fontColorLight: '#C97FD4'
 };

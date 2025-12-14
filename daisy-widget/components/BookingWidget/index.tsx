@@ -40,7 +40,7 @@ export default function BookingWidget(
             ...defaultTheme.background,
             ...(theme?.background || {}),
         },
-		font: theme?.font || defaultTheme.font,
+		fontName: theme?.fontName || defaultTheme.fontName,
     };
 
 	const handleInstanceSelect = (instance: WorkshopEventInstance) => {
@@ -69,7 +69,7 @@ export default function BookingWidget(
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5 }}
-			className={`booking-widget w-full max-w-2xl mx-auto ${mergedTheme.font} ${className}`}
+			className={`booking-widget w-full max-w-2xl mx-auto ${mergedTheme.fontName} text-${mergedTheme.fontColor} ${className}`}
 		>
 			<WorkshopCard
 				workshop={workshop}

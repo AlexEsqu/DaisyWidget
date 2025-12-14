@@ -1,3 +1,5 @@
+import { Black_And_White_Picture } from "next/font/google";
+
 export interface Theme {
 	colors: {
 		primary: string,
@@ -8,7 +10,9 @@ export interface Theme {
 		basic: string;
 		heavy: string;
 	};
-	font: string;
+	fontName: string;
+	fontColor: string;
+	fontColorLight: string;
 	borderRadius: string;
 }
 
@@ -20,8 +24,10 @@ export const defaultTheme = {
 	},
 	background: {
 		basic: '#faf8e6',
-		heavy: '#f0eeda',
+		heavy: '#ffffff',
 	},
-	font: 'montserrat',
+	fontName: 'montserrat',
+	fontColor: 'black',
+	fontColorLight: '#c1c1c1',
 	borderRadius: '1rem',
 }
