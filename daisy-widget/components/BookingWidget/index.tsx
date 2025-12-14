@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Workshop, WorkshopEventInstance } from './types';
-import { defaultTheme, type Theme, getFont } from './theme';
+import { defaultTheme, type Theme } from './theme';
 import WorkshopCard from './SubComponents/WorkshopCard';
 import BookingModal from './SubComponents/BookingModal';
 

@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Workshop, WorkshopEventInstance } from '../types';
-import { defaultTheme, type Theme, getFont } from '../theme';
+import { defaultTheme, type Theme } from '../theme';
 import { MapPin, Users } from 'lucide-react';
 import DatePicker from './DatePicker';
 
