@@ -75,7 +75,7 @@ export default function BookingModal({
                                 <h3 className="text-2xl font-bold mb-2" style={{ color: theme.colors.primary }}>
                                     Réservation confirmée !
                                 </h3>
-                                <p className="text-gray-600">Vous recevrez un email de confirmation</p>
+                                <p style={{ color: theme.fontColorLight }}>Vous recevrez un email de confirmation</p>
                             </div>
                         ) : (
                             <>
@@ -85,7 +85,11 @@ export default function BookingModal({
                                     </h3>
                                     <button
                                         onClick={onClose}
-                                        className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                                        className="p-1 rounded-full transition-colors"
+                                        style={{
+                                            color: theme.fontColor,
+                                            backgroundColor: `${theme.colors.primary}10`
+                                        }}
                                     >
                                         <X size={24} />
                                     </button>
@@ -93,20 +97,20 @@ export default function BookingModal({
 
                                 <div className="space-y-4 mb-6">
                                     <div>
-                                        <p className="text-sm text-gray-500">Atelier</p>
-                                        <p className="font-semibold text-lg">{workshop.title}</p>
+                                        <p className="text-sm" style={{ color: theme.fontColorLight }}>Atelier</p>
+                                        <p className="font-semibold text-lg" style={{ color: theme.fontColor }}>{workshop.title}</p>
                                     </div>
 
                                     <div>
-                                        <p className="text-sm text-gray-500">Date</p>
-                                        <p className="font-semibold capitalize">
+                                        <p className="text-sm" style={{ color: theme.fontColorLight }}>Date</p>
+                                        <p className="font-semibold capitalize" style={{ color: theme.fontColor }}>
                                             {selectedInstance && formatDate(selectedInstance.date)}
                                         </p>
                                     </div>
 
                                     <div>
-                                        <p className="text-sm text-gray-500">Prix</p>
-                                        <p className="font-semibold text-xl">{selectedInstance?.price}€</p>
+                                        <p className="text-sm" style={{ color: theme.fontColorLight }}>Prix</p>
+                                        <p className="font-semibold text-xl" style={{ color: theme.fontColor }}>{selectedInstance?.price}€</p>
                                     </div>
                                 </div>
 
@@ -118,7 +122,8 @@ export default function BookingModal({
                                         className="flex-1 py-3 px-4 rounded-xl border-2 font-semibold transition-colors"
                                         style={{
                                             borderColor: theme.colors.primary,
-                                            color: theme.colors.primary
+                                            color: theme.colors.primary,
+                                            borderRadius: theme.borderRadius
                                         }}
                                     >
                                         Annuler
@@ -129,7 +134,10 @@ export default function BookingModal({
                                         whileTap={{ scale: 0.98 }}
                                         onClick={onConfirm}
                                         className="flex-1 py-3 px-4 rounded-xl text-white font-semibold"
-                                        style={{ backgroundColor: theme.colors.primary }}
+                                        style={{
+                                            backgroundColor: theme.colors.primary,
+                                            borderRadius: theme.borderRadius
+                                        }}
                                     >
                                         Confirmer
                                     </motion.button>
