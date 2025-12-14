@@ -26,7 +26,7 @@ export const defaultTheme = {
 		basic: '#ffffff',
 		heavy: '#e1c6d2',
 	},
-	fontName: 'montserrat',
+	fontName: 'montserrat, sans-serif',
 	fontColor: '#331b3b',
 	fontColorLight: '#c1c1c1',
 	borderRadius: '1rem',

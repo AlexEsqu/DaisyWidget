@@ -75,7 +75,7 @@ export default function WorkshopCard({
 
                 <div className={`space-y-3 mb-6`}>
                     <div className={`flex items-start gap-2 ${workshop.avatar ? 'justify-end ml-0' : 'mt-2 justify-center'}`}
-					style={{ color: theme.fontColorLight }}>
+					style={{ color: theme.fontColor }}>
                         {/* <MapPin size={20} className='mt-1.5' style={{ color: theme.colors.secondary  }} /> */}
                         <span>{workshop.location}</span>
                     </div>

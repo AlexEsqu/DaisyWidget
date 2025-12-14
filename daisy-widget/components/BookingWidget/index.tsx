@@ -69,7 +69,8 @@ export default function BookingWidget(
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5 }}
-			className={`booking-widget w-full max-w-2xl mx-auto ${mergedTheme.fontName} text-${mergedTheme.fontColor} ${className}`}
+			className={`booking-widget w-full max-w-2xl mx-auto text-${mergedTheme.fontColor} ${className}`}
+			style={{ fontFamily: mergedTheme.fontName }}
 		>
 			<WorkshopCard
 				workshop={workshop}

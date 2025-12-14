@@ -3,7 +3,7 @@
 import BookingWidget from "@/components/BookingWidget";
 
 // THEMES
-import { coralTealTheme, purpleGoldTheme, blueOrangeTheme, minimalistTheme, natureTheme, sunsetTheme } from "./themes/theme"
+import { coralTealTheme, purpleGoldTheme, blueOrangeTheme, minimalistTheme, natureTheme, sunsetTheme, darkTechTheme } from "./themes/theme"
 
 // MOCK DATA to choose from
 import { mockWorkshop, mockWorkshopWithoutAvatar } from "./mockData/mockWorkshops";
@@ -33,7 +33,7 @@ export default function Home() {
 				<BookingWidget
 					workshop={mockWorkshopWithoutAvatar}
 					onBook={(instance) => console.log("Booked:", instance)}
-					theme= {purpleGoldTheme}
+					theme= {darkTechTheme}
 				/>
 
 				<BookingWidget

@@ -1,5 +1,5 @@
 import { type Theme } from "@/components/BookingWidget/theme";
-export { coralTealTheme, purpleGoldTheme, blueOrangeTheme, minimalistTheme, natureTheme, sunsetTheme }
+export { coralTealTheme, purpleGoldTheme, blueOrangeTheme, minimalistTheme, natureTheme, sunsetTheme, darkTechTheme }
 
 // Theme 1: Vibrant Coral & Teal
 const coralTealTheme: Partial<Theme> = {
@@ -12,7 +12,7 @@ const coralTealTheme: Partial<Theme> = {
     basic: '#FFFFFF',
     heavy: '#F5F5F5',
   },
-  fontName: 'poppins',
+  fontName: 'poppins, sans-serif',
   fontColor: '#2C2C2C',
   fontColorLight: '#999999'
 };
@@ -28,7 +28,7 @@ const purpleGoldTheme: Partial<Theme> = {
     basic: '#FAF6F1',
     heavy: '#F5EFE7',
   },
-  fontName: 'montserrat',
+  fontName: 'montserrat, sans-serif',
   fontColor: '#3D2817',
   fontColorLight: '#A89080'
 };
@@ -44,7 +44,7 @@ const blueOrangeTheme: Partial<Theme> = {
     basic: '#F0F7FF',
     heavy: '#E8F1FF',
   },
-  fontName: 'inter',
+  fontName: 'inter, sans-serif',
   fontColor: '#1A1A2E',
   fontColorLight: '#8B92A9'
 };
@@ -60,7 +60,7 @@ const minimalistTheme: Partial<Theme> = {
     basic: '#FFFFFF',
     heavy: '#F8F9FA',
   },
-  fontName: 'roboto',
+  fontName: 'roboto, sans-serif',
   fontColor: '#2C3E50',
   fontColorLight: '#95A5A6'
 };
@@ -76,7 +76,7 @@ const natureTheme: Partial<Theme> = {
     basic: '#F5F9F0',
     heavy: '#EBF3E3',
   },
-  fontName: 'montserrat',
+  fontName: 'montserrat, serif',
   fontColor: '#1B3D0F',
   fontColorLight: '#7A9B6F'
 };
@@ -92,7 +92,23 @@ const sunsetTheme: Partial<Theme> = {
     basic: '#FFF5FA',
     heavy: '#FFE8F5',
   },
-  fontName: 'poppins',
+  fontName: 'poppins, sans-serif',
   fontColor: '#4A1F5C',
   fontColorLight: '#C97FD4'
+};
+
+// Theme 7: Dark Tech
+const darkTechTheme: Partial<Theme> = {
+  colors: {
+    primary: '#00B8D4',
+    secondary: '#0099BB',
+    accent: '#660066'
+  },
+  background: {
+    basic: '#0F1420',
+    heavy: '#1A1F3A',
+  },
+  fontName: 'inter, sans-serif',
+  fontColor: '#D0D0D0',
+  fontColorLight: '#8A8A8A'
 };

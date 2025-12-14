@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { type Theme } from '../theme';
 import { Calendar, Euro, Users } from 'lucide-react';
@@ -22,12 +23,27 @@ export default function DatePicker(
 	: DatePickerProps
 )
 {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     const formatDate = (date: Date) => {
+        if (isMobile) {
+            return new Intl.DateTimeFormat('fr-FR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: '2-digit'
+            }).format(date);
+        }
         return new Intl.DateTimeFormat('fr-FR', {
             weekday: 'long',
             day: 'numeric',
-            month: 'long',
-            year: 'numeric'
+            month: 'long'
         }).format(date);
     };
 
@@ -42,13 +58,13 @@ export default function DatePicker(
         <div className="mt-6">
 
 			{/* Call to action container */}
-            <div className="flex items-center gap-2 mb-4 justify-center">
+            {/* <div className="flex items-center gap-2 mb-4 justify-center">
                 <Calendar size={20} style={{ color: theme.colors.primary }} />
                 <h3 className="text-lg font-semibold" style={{ color: theme.colors.primary }}>
                     Choisissez une date
                 </h3>
 				<Calendar size={20} style={{ color: theme.colors.primary }} />
-            </div>
+            </div> */}
 
 			{/* Actual date picker container */}
             <div className="flex flex-wrap gap-2">
@@ -78,17 +94,17 @@ export default function DatePicker(
                         >
 
 							{/* Date Card */}
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-1">
 
 								{/* Day */}
-                                <span className={`capitalize font-medium whitespace-pre-line ${isSelected ? '' : 'text-gray-700'}`}
-                                    style={{ color: isSelected ? theme.colors.primary : undefined }}>
+                                <span className={`capitalize font-medium whitespace-pre-line text-xl ${isSelected ? '' : 'text-gray-700'}`}
+                                    style={{ color: isSelected ? theme.colors.primary : theme.fontColor }}>
                                     {formatDate(instance.date)}
                                 </span>
 
 								{/* Time */}
 								<span className={`capitalize font-medium whitespace-pre-line text-sm ${isSelected ? '' : 'text-gray-700'}`}
-                                    style={{ color: isSelected ? theme.colors.primary : undefined }}>
+                                    style={{ color: isSelected ? theme.colors.primary : theme.fontColor }}>
                                     {formatHour(instance.date)}
                                 </span>
 
@@ -107,7 +123,10 @@ export default function DatePicker(
                                         <Users size={16} style={{ color: theme.colors.secondary  }} />
                                         <span
                                             className="font-semibold"
-                                            style={{ color: instance.spotsRemaining <= 3 ? theme.colors.accent : theme.colors.secondary }}
+                                            style={{
+                                                color: instance.spotsRemaining <= 3 ? theme.colors.accent : theme.colors.secondary,
+                                                fontWeight: instance.spotsRemaining <= 3 ? 700 : 400
+                                            }}
                                         >
                                             {instance.spotsRemaining} place{instance.spotsRemaining > 1 ? 's' : ''}
                                         </span>
