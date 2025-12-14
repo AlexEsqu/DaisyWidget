@@ -3,26 +3,44 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Workshop, WorkshopEventInstance } from './types';
-import { daisyTheme } from './theme';
+import { defaultTheme, type Theme, getFont } from './theme';
 import WorkshopCard from './SubComponents/WorkshopCard';
 import BookingModal from './SubComponents/BookingModal';
 
 interface BookingWidgetProps {
-	workshop: Workshop;
-	onBook?: (instance: WorkshopEventInstance) => void;
-	theme?: 'pro' | 'user';
-	className?: string;
+    workshop: Workshop;
+    onBook?: (instance: WorkshopEventInstance) => void;
+    theme?: Partial<Theme>;
+    className?: string;
 }
 
-export default function BookingWidget({
-	workshop,
-	onBook,
-	theme = 'user',
-	className = ''
-}: BookingWidgetProps) {
+export default function BookingWidget(
+	{
+		workshop,
+		onBook,
+		theme,
+		className = ''
+	}
+	: BookingWidgetProps
+)
+{
 	const [selectedInstance, setSelectedInstance] = useState<WorkshopEventInstance | null>(null);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isBooked, setIsBooked] = useState(false);
+
+	const mergedTheme: Theme = {
+        ...defaultTheme,
+        ...theme,
+        colors: {
+            ...defaultTheme.colors,
+            ...(theme?.colors || {}),
+        },
+        background: {
+            ...defaultTheme.background,
+            ...(theme?.background || {}),
+        },
+		font: theme?.font || defaultTheme.font,
+    };
 
 	const handleInstanceSelect = (instance: WorkshopEventInstance) => {
 		setSelectedInstance(instance);
@@ -50,25 +68,25 @@ export default function BookingWidget({
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5 }}
-			className={`booking-widget w-full max-w-2xl mx-auto ${daisyTheme.font.className} ${className}`}
+			className={`booking-widget w-full max-w-2xl mx-auto ${mergedTheme.font} ${className}`}
 		>
 			<WorkshopCard
 				workshop={workshop}
-				theme={theme}
+				theme={mergedTheme}
 				selectedInstance={selectedInstance}
 				onSelectInstance={handleInstanceSelect}
 				onBookClick={handleBookClick}
 			/>
 
-			<BookingModal
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
-				onConfirm={handleConfirmBooking}
-				workshop={workshop}
-				selectedInstance={selectedInstance}
-				isBooked={isBooked}
-				theme={theme}
-			/>
+				<BookingModal
+					isOpen={isModalOpen}
+					onClose={() => setIsModalOpen(false)}
+					onConfirm={handleConfirmBooking}
+					workshop={workshop}
+					selectedInstance={selectedInstance}
+					isBooked={isBooked}
+					theme={mergedTheme}
+				/>
 		</motion.div>
 	);
 }

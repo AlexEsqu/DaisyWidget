@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { Workshop, WorkshopEventInstance } from '../types';
-import { daisyTheme } from '../theme';
+import { type Theme } from '../theme';
 import { X, Check } from 'lucide-react';
 
 interface BookingModalProps {
@@ -12,7 +12,7 @@ interface BookingModalProps {
     workshop: Workshop;
     selectedInstance: WorkshopEventInstance | null;
     isBooked: boolean;
-    theme: 'pro' | 'user';
+    theme: Theme;
 }
 
 export default function BookingModal({
@@ -24,7 +24,6 @@ export default function BookingModal({
     isBooked,
     theme
 }: BookingModalProps) {
-    const themeColors = theme === 'pro' ? daisyTheme.colors.pro : daisyTheme.colors.user;
 
     const formatDate = (date: Date) => {
         return new Intl.DateTimeFormat('fr-FR', {
@@ -65,11 +64,11 @@ export default function BookingModal({
                                     animate={{ scale: 1 }}
                                     transition={{ type: 'spring', duration: 0.5 }}
                                     className="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4"
-                                    style={{ backgroundColor: `${themeColors.primary}20` }}
+                                    style={{ backgroundColor: `${theme.colors.primary}20` }}
                                 >
-                                    <Check size={40} style={{ color: themeColors.primary }} />
+                                    <Check size={40} style={{ color: theme.colors.primary }} />
                                 </motion.div>
-                                <h3 className="text-2xl font-bold mb-2" style={{ color: themeColors.primary }}>
+                                <h3 className="text-2xl font-bold mb-2" style={{ color: theme.colors.primary }}>
                                     Réservation confirmée !
                                 </h3>
                                 <p className="text-gray-600">Vous recevrez un email de confirmation</p>
@@ -77,7 +76,7 @@ export default function BookingModal({
                         ) : (
                             <>
                                 <div className="flex justify-between items-start mb-6">
-                                    <h3 className="text-2xl font-bold" style={{ color: themeColors.primary }}>
+                                    <h3 className="text-2xl font-bold" style={{ color: theme.colors.primary }}>
                                         Confirmer la réservation
                                     </h3>
                                     <button
@@ -119,8 +118,8 @@ export default function BookingModal({
                                         onClick={onClose}
                                         className="flex-1 py-3 px-4 rounded-xl border-2 font-semibold transition-colors"
                                         style={{
-                                            borderColor: themeColors.primary,
-                                            color: themeColors.primary
+                                            borderColor: theme.colors.primary,
+                                            color: theme.colors.primary
                                         }}
                                     >
                                         Annuler
@@ -131,7 +130,7 @@ export default function BookingModal({
                                         whileTap={{ scale: 0.98 }}
                                         onClick={onConfirm}
                                         className="flex-1 py-3 px-4 rounded-xl text-white font-semibold"
-                                        style={{ backgroundColor: themeColors.primary }}
+                                        style={{ backgroundColor: theme.colors.primary }}
                                     >
                                         Confirmer
                                     </motion.button>

@@ -1,26 +1,27 @@
-
-import { Montserrat } from "next/font/google";
-const montserrat = Montserrat({
-	subsets: ["latin"],
-	weight: ["400", "500", "600", "700"],
-});
-
-export const daisyTheme = {
+export interface Theme {
 	colors: {
-	pro: {
+		primary: string,
+		secondary: string;
+		accent: string;
+	}
+	background: {
+		basic: string;
+		heavy: string;
+	};
+	font: string;
+	borderRadius: string;
+}
+
+export const defaultTheme = {
+	colors: {
 		primary: '#7e0181',
 		secondary: '#ff5c28',
-	},
-	user: {
-		primary: '#f85441',
-		accent: '#7c0080',
+		accent: '#ff5c28',
 	},
 	background: {
-		light: '#faf8e6',
-		medium: '#f0eeda',
-		pink: '#ffded4',
-	}
+		basic: '#faf8e6',
+		heavy: '#f0eeda',
 	},
-	font: montserrat,
+	font: 'montserrat',
 	borderRadius: '1rem',
 }

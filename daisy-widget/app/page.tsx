@@ -1,15 +1,14 @@
 'use client';
 
-import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button"
 import BookingWidget from "@/components/BookingWidget";
 import { Workshop } from "@/components/BookingWidget/types";
 
+import { Montserrat, Roboto, Poppins, Inter } from "next/font/google";
+
 const mockWorkshop: Workshop = {
   id: "wk-1",
-  title: "FrontEnd From Interns",
+  title: "Atelier PaintF",
   image: "https://site-assets.plasmic.app/a7cc2b75f4ab6f16b5d71059d345ef1a.jpg",
   avatar: "https://site-assets.plasmic.app/07835041663d8a1eb3781df76288fcd7.png",
   location: "5, Parvis Alan Turing - 75013 Paris",
@@ -49,18 +48,24 @@ export default function Home() {
   return (
     <>
       <main className='flex min-h-screen flex-col items-center justify-center p-8'>
-        <motion.div
+        {/* <motion.div
           className='text-4xl font-bold mb-8'
           initial={{opacity: 0, y: -50}}
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.5}}>
             Demo: Booking Widget For Daisy
-        </motion.div>
+        </motion.div> */}
 
         <BookingWidget
-          workshop={mockWorkshop}
-          onBook={(instance) => console.log("Booked instance:", instance)}
-        />
+					workshop={mockWorkshop}
+					onBook={(instance) => console.log("Booked:", instance)}
+					theme="user"
+					colors={{
+						primary: '#FF6B6B',
+						secondary: '#4ECDC4',
+						accent: '#95E1D3'
+					}}
+				/>
       </main>
     </>
   );

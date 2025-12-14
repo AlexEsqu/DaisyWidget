@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { daisyTheme } from '../theme';
+import { type Theme } from '../theme';
 import { Calendar, Euro, Users } from 'lucide-react';
 import { WorkshopEventInstance } from '../types';
 
@@ -9,13 +9,19 @@ interface DatePickerProps {
     instances: WorkshopEventInstance[];
     selectedInstance: WorkshopEventInstance | null;
     onSelectInstance: (instance: WorkshopEventInstance) => void;
-    theme: 'pro' | 'user';
+    theme: Theme,
 }
 
-export default function DatePicker({ instances, selectedInstance, onSelectInstance, theme }: DatePickerProps) {
-    const themeColors = theme === 'pro' ? daisyTheme.colors.pro : daisyTheme.colors.user;
-    const iconColor = 'secondary' in themeColors ? themeColors.secondary : themeColors.accent;
-
+export default function DatePicker(
+	{
+		instances,
+		selectedInstance,
+		onSelectInstance,
+		theme
+	}
+	: DatePickerProps
+)
+{
     const formatDate = (date: Date) => {
         return new Intl.DateTimeFormat('fr-FR', {
             weekday: 'long',
@@ -36,11 +42,12 @@ export default function DatePicker({ instances, selectedInstance, onSelectInstan
         <div className="mt-6">
 
 			{/* Call to action container */}
-            <div className="flex items-center gap-2 mb-4">
-                <Calendar size={20} style={{ color: themeColors.primary }} />
-                <h3 className="text-lg font-semibold" style={{ color: themeColors.primary }}>
+            <div className="flex items-center gap-2 mb-4 justify-center">
+                <Calendar size={20} style={{ color: theme.colors.primary }} />
+                <h3 className="text-lg font-semibold" style={{ color: theme.colors.primary }}>
                     Choisissez une date
                 </h3>
+				<Calendar size={20} style={{ color: theme.colors.primary }} />
             </div>
 
 			{/* Actual date picker container */}
@@ -66,8 +73,8 @@ export default function DatePicker({ instances, selectedInstance, onSelectInstan
                                 ${!isAvailable ? 'opacity-50 cursor-not-allowed' : ''}
                             `}
                             style={{
-                                backgroundColor: isSelected ? `${themeColors.primary}15` : 'white',
-                                borderColor: isSelected ? themeColors.primary : undefined,
+                                backgroundColor: isSelected ? `${theme.colors.primary}15` : 'white',
+                                borderColor: isSelected ? theme.colors.primary : undefined,
                             }}
                         >
 
@@ -76,13 +83,13 @@ export default function DatePicker({ instances, selectedInstance, onSelectInstan
 
 								{/* Day */}
                                 <span className={`capitalize font-medium whitespace-pre-line ${isSelected ? '' : 'text-gray-700'}`}
-                                    style={{ color: isSelected ? themeColors.primary : undefined }}>
+                                    style={{ color: isSelected ? theme.colors.primary : undefined }}>
                                     {formatDate(instance.date)}
                                 </span>
 
 								{/* Time */}
 								<span className={`capitalize font-medium whitespace-pre-line text-sm ${isSelected ? '' : 'text-gray-700'}`}
-                                    style={{ color: isSelected ? themeColors.primary : undefined }}>
+                                    style={{ color: isSelected ? theme.colors.primary : undefined }}>
                                     {formatHour(instance.date)}
                                 </span>
 
@@ -91,16 +98,15 @@ export default function DatePicker({ instances, selectedInstance, onSelectInstan
 
 									{/* Price */}
                                     <div className="flex items-center gap-1">
-                                        <Euro size={16} style={{ color: iconColor }} />
+                                        <Euro size={16} style={{ color: theme.colors.secondary  }} />
                                         <span className="font-semibold">{instance.price}€</span>
                                     </div>
 
 									{/* Spot remaining */}
                                     <div className="flex items-center gap-1">
-                                        <Users size={16} style={{ color: iconColor }} />
-                                        <span className={`font-semibold ${instance.spotsRemaining <= 3 ? 'text-red-500' : ''}`}>
-                                            {instance.spotsRemaining}
-											{/* place{instance.spotsRemaining > 1 ? 's' : ''} */}
+                                        <Users size={16} style={{ color: theme.colors.secondary  }} />
+                                        <span className={`font-semibold ${instance.spotsRemaining <= 3 ? 'text-red-400' : ''}`}>
+                                            {instance.spotsRemaining} place{instance.spotsRemaining > 1 ? 's' : ''}
                                         </span>
                                     </div>
 
