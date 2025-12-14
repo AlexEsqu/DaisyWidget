@@ -97,7 +97,9 @@ export default function DatePicker(
 
 									{/* Price */}
                                     <div className="flex items-center gap-1">
-                                        <span className="font-semibold">{instance.price}€</span>
+                                        <span className="font-semibold"
+										style={{ color: isSelected ? theme.colors.secondary : theme.colors.primary }}
+										>{instance.price}€</span>
                                     </div>
 
 									{/* Spot remaining */}
@@ -105,7 +107,7 @@ export default function DatePicker(
                                         <Users size={16} style={{ color: theme.colors.secondary  }} />
                                         <span
                                             className="font-semibold"
-                                            style={{ color: instance.spotsRemaining <= 3 ? theme.colors.accent : undefined }}
+                                            style={{ color: instance.spotsRemaining <= 3 ? theme.colors.accent : theme.colors.secondary }}
                                         >
                                             {instance.spotsRemaining} place{instance.spotsRemaining > 1 ? 's' : ''}
                                         </span>

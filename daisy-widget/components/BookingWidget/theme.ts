@@ -18,16 +18,16 @@ export interface Theme {
 
 export const defaultTheme = {
 	colors: {
-		primary: '#7e0181',
-		secondary: '#ff5c28',
-		accent: '#ff5c28',
+		primary: '#7d0080',
+		secondary: '#331b3b',
+		accent: '#f95441',
 	},
 	background: {
-		basic: '#faf8e6',
-		heavy: '#ffffff',
+		basic: '#ffffff',
+		heavy: '#e1c6d2',
 	},
 	fontName: 'montserrat',
-	fontColor: 'black',
+	fontColor: '#331b3b',
 	fontColorLight: '#c1c1c1',
 	borderRadius: '1rem',
 }

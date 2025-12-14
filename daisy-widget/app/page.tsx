@@ -21,13 +21,25 @@ export default function Home() {
 				<BookingWidget
 					workshop={mockWorkshop}
 					onBook={(instance) => console.log("Booked:", instance)}
-					theme= {activeTheme}
+					// theme= {activeTheme}
 				/>
 
 				<BookingWidget
 					workshop={mockWorkshopWithoutAvatar}
 					onBook={(instance) => console.log("Booked:", instance)}
 					theme= {activeTheme}
+				/>
+
+				<BookingWidget
+					workshop={mockWorkshopWithoutAvatar}
+					onBook={(instance) => console.log("Booked:", instance)}
+					theme= {purpleGoldTheme}
+				/>
+
+				<BookingWidget
+					workshop={mockWorkshopWithoutAvatar}
+					onBook={(instance) => console.log("Booked:", instance)}
+					theme= {minimalistTheme}
 				/>
 
 			</main>
