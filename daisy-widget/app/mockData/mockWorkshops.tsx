@@ -5,7 +5,7 @@ export const mockWorkshop: Workshop = {
   title: "Atelier PaintF",
   image: "https://site-assets.plasmic.app/a7cc2b75f4ab6f16b5d71059d345ef1a.jpg",
   avatar: "https://site-assets.plasmic.app/07835041663d8a1eb3781df76288fcd7.png",
-  location: "5, Parvis Alan Turing - 75013 Paris",
+  location: "5, Parvis Alan Turing 75013 Paris",
   instances: [
     {
       id: "inst-1",
@@ -44,7 +44,7 @@ export const mockWorkshopWithoutAvatar: Workshop = {
   title: "Atelier PaintF",
   image: "https://site-assets.plasmic.app/a7cc2b75f4ab6f16b5d71059d345ef1a.jpg",
   avatar: null,
-  location: "5, Parvis Alan Turing - 75013 Paris",
+  location: "5, Parvis Alan Turing 75013 Paris",
   instances: [
     {
       id: "inst-1",
