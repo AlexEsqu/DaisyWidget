@@ -67,3 +67,6 @@ Booking Widgets in general:
 - vibe: hippy logo + plants
 
 
+## AI Policy
+
+I used AI in the making of this demo, specifically to fix NextJS syntax errors, generate mock data, kickstart the component building process with good practices, and to probe on the possible uses of the tech stack items I wasn't familiar with.
