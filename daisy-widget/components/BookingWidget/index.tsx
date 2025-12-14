@@ -2,73 +2,73 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Workshop } from './types';
+import { Workshop, WorkshopEventInstance } from './types';
 import { daisyTheme } from './theme';
 import WorkshopCard from './SubComponents/WorkshopCard';
 import BookingModal from './SubComponents/BookingModal';
 
 interface BookingWidgetProps {
-    workshop: Workshop;
-    onBook?: (date: Date) => void;
-    theme?: 'pro' | 'user';
-    className?: string;
+	workshop: Workshop;
+	onBook?: (instance: WorkshopEventInstance) => void;
+	theme?: 'pro' | 'user';
+	className?: string;
 }
 
 export default function BookingWidget({
-    workshop,
-    onBook,
-    theme = 'user',
-    className = ''
+	workshop,
+	onBook,
+	theme = 'user',
+	className = ''
 }: BookingWidgetProps) {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isBooked, setIsBooked] = useState(false);
+	const [selectedInstance, setSelectedInstance] = useState<WorkshopEventInstance | null>(null);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isBooked, setIsBooked] = useState(false);
 
-    const handleDateSelect = (date: Date) => {
-        setSelectedDate(date);
-    };
+	const handleInstanceSelect = (instance: WorkshopEventInstance) => {
+		setSelectedInstance(instance);
+	};
 
-    const handleBookClick = () => {
-        if (selectedDate) {
-            setIsModalOpen(true);
-        }
-    };
+	const handleBookClick = () => {
+		if (selectedInstance) {
+			setIsModalOpen(true);
+		}
+	};
 
-    const handleConfirmBooking = () => {
-        if (selectedDate) {
-            onBook?.(selectedDate);
-            setIsBooked(true);
-            setTimeout(() => {
-                setIsModalOpen(false);
-                setIsBooked(false);
-            }, 2000);
-        }
-    };
+	const handleConfirmBooking = () => {
+		if (selectedInstance) {
+			onBook?.(selectedInstance);
+			setIsBooked(true);
+			setTimeout(() => {
+				setIsModalOpen(false);
+				setIsBooked(false);
+			}, 2000);
+		}
+	};
 
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className={`booking-widget w-full max-w-2xl mx-auto ${daisyTheme.font.className} ${className}`}
-        >
-            <WorkshopCard
-                workshop={workshop}
-                theme={theme}
-                selectedDate={selectedDate}
-                onSelectDate={handleDateSelect}
-                onBookClick={handleBookClick}
-            />
+	return (
+		<motion.div
+			initial={{ opacity: 0, y: 20 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.5 }}
+			className={`booking-widget w-full max-w-2xl mx-auto ${daisyTheme.font.className} ${className}`}
+		>
+			<WorkshopCard
+				workshop={workshop}
+				theme={theme}
+				selectedInstance={selectedInstance}
+				onSelectInstance={handleInstanceSelect}
+				onBookClick={handleBookClick}
+			/>
 
-            <BookingModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                onConfirm={handleConfirmBooking}
-                workshop={workshop}
-                selectedDate={selectedDate}
-                isBooked={isBooked}
-                theme={theme}
-            />
-        </motion.div>
-    );
+			<BookingModal
+				isOpen={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+				onConfirm={handleConfirmBooking}
+				workshop={workshop}
+				selectedInstance={selectedInstance}
+				isBooked={isBooked}
+				theme={theme}
+			/>
+		</motion.div>
+	);
 }

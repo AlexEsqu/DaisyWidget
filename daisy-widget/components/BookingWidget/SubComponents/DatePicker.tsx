@@ -2,66 +2,117 @@
 
 import { motion } from 'framer-motion';
 import { daisyTheme } from '../theme';
-import { Calendar } from 'lucide-react';
+import { Calendar, Euro, Users } from 'lucide-react';
+import { WorkshopEventInstance } from '../types';
 
 interface DatePickerProps {
-dates: Date[];
-selectedDate: Date | null;
-onSelectDate: (date: Date) => void;
-theme: 'pro' | 'user';
+    instances: WorkshopEventInstance[];
+    selectedInstance: WorkshopEventInstance | null;
+    onSelectInstance: (instance: WorkshopEventInstance) => void;
+    theme: 'pro' | 'user';
 }
 
-export default function DatePicker({ dates, selectedDate, onSelectDate, theme }: DatePickerProps) {
-const themeColors = theme === 'pro' ? daisyTheme.colors.pro : daisyTheme.colors.user;
+export default function DatePicker({ instances, selectedInstance, onSelectInstance, theme }: DatePickerProps) {
+    const themeColors = theme === 'pro' ? daisyTheme.colors.pro : daisyTheme.colors.user;
+    const iconColor = 'secondary' in themeColors ? themeColors.secondary : themeColors.accent;
 
-const formatDate = (date: Date) => {
-	return new Intl.DateTimeFormat('fr-FR', {
-	weekday: 'long',
-	day: 'numeric',
-	month: 'long',
-	year: 'numeric',
-	hour: '2-digit',
-	minute: '2-digit'
-	}).format(date);
-};
+    const formatDate = (date: Date) => {
+        return new Intl.DateTimeFormat('fr-FR', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        }).format(date);
+    };
 
-return (
-	<div className="mt-6">
-	<div className="flex items-center gap-2 mb-4">
-		<Calendar size={20} style={{ color: themeColors.primary }} />
-		<h3 className="text-lg font-semibold" style={{ color: themeColors.primary }}>
-		Choisissez une date
-		</h3>
-	</div>
+	const formatHour = (date: Date) => {
+		return new Intl.DateTimeFormat('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit'
+        }).format(date);
+	}
 
-	<div className="space-y-3">
-		{dates.map((date, index) => {
-		const isSelected = selectedDate?.getTime() === date.getTime();
+    return (
+        <div className="mt-6">
 
-		return (
-			<motion.button
-			key={index}
-			onClick={() => onSelectDate(date)}
-			whileHover={{ scale: 1.02 }}
-			whileTap={{ scale: 0.98 }}
-			className={`
-				w-full p-4 rounded-2xl text-left
-				transition-all duration-200
-				${isSelected ? 'ring-2' : 'ring-1 ring-gray-200'}
-			`}
-			style={{
-				backgroundColor: isSelected ? `${themeColors.primary}15` : 'white',
-				borderColor: isSelected ? themeColors.primary : undefined,
-				color: isSelected ? themeColors.primary : '#374151'
-			}}
-			>
-			<span className="capitalize font-medium">
-				{formatDate(date)}
-			</span>
-			</motion.button>
-		);
-		})}
-	</div>
-	</div>
-);
+			{/* Call to action container */}
+            <div className="flex items-center gap-2 mb-4">
+                <Calendar size={20} style={{ color: themeColors.primary }} />
+                <h3 className="text-lg font-semibold" style={{ color: themeColors.primary }}>
+                    Choisissez une date
+                </h3>
+            </div>
+
+			{/* Actual date picker container */}
+            <div className="flex flex-wrap gap-2">
+                {instances.map((instance) => {
+                    const isSelected = selectedInstance?.id === instance.id;
+                    const isAvailable = instance.spotsRemaining > 0;
+
+                    return (
+
+                        <motion.button
+                            key={instance.id}
+                            onClick={() => isAvailable && onSelectInstance(instance)}
+                            disabled={!isAvailable}
+                            whileHover={isAvailable ? { scale: 1.02 } : {}}
+                            whileTap={isAvailable ? { scale: 0.98 } : {}}
+                            className={`
+                                box-border shrink-0 grow basis-[calc(33.333%-0.75rem)]
+                                sm:basis-[calc(50%-0.75rem)] xs:basis-full
+                                min-w-44 p-3 rounded-xl text-center
+                                transition-colors duration-200
+                                ${isSelected ? 'ring-2' : 'ring-1 ring-gray-200'}
+                                ${!isAvailable ? 'opacity-50 cursor-not-allowed' : ''}
+                            `}
+                            style={{
+                                backgroundColor: isSelected ? `${themeColors.primary}15` : 'white',
+                                borderColor: isSelected ? themeColors.primary : undefined,
+                            }}
+                        >
+
+							{/* Date Card */}
+                            <div className="flex flex-col gap-2">
+
+								{/* Day */}
+                                <span className={`capitalize font-medium whitespace-pre-line ${isSelected ? '' : 'text-gray-700'}`}
+                                    style={{ color: isSelected ? themeColors.primary : undefined }}>
+                                    {formatDate(instance.date)}
+                                </span>
+
+								{/* Time */}
+								<span className={`capitalize font-medium whitespace-pre-line text-sm ${isSelected ? '' : 'text-gray-700'}`}
+                                    style={{ color: isSelected ? themeColors.primary : undefined }}>
+                                    {formatHour(instance.date)}
+                                </span>
+
+								{/* Details */}
+                                <div className="flex items-center justify-center gap-2 text-sm">
+
+									{/* Price */}
+                                    <div className="flex items-center gap-1">
+                                        <Euro size={16} style={{ color: iconColor }} />
+                                        <span className="font-semibold">{instance.price}€</span>
+                                    </div>
+
+									{/* Spot remaining */}
+                                    <div className="flex items-center gap-1">
+                                        <Users size={16} style={{ color: iconColor }} />
+                                        <span className={`font-semibold ${instance.spotsRemaining <= 3 ? 'text-red-500' : ''}`}>
+                                            {instance.spotsRemaining}
+											{/* place{instance.spotsRemaining > 1 ? 's' : ''} */}
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </motion.button>
+                    );
+                })}
+            </div>
+        </div>
+    );
 }
