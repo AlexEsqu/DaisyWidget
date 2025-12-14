@@ -68,13 +68,12 @@ export default function DatePicker(
                                 box-border shrink-0 grow basis-[calc(33.333%-0.75rem)]
                                 sm:basis-[calc(50%-0.75rem)] xs:basis-full
                                 min-w-44 p-3 rounded-xl text-center
-                                transition-colors duration-200
-                                ${isSelected ? 'ring-2' : 'ring-1 ring-gray-200'}
+                                transition-colors duration-200 border-2
                                 ${!isAvailable ? 'opacity-50 cursor-not-allowed' : ''}
                             `}
                             style={{
                                 backgroundColor: isSelected ? `${theme.colors.primary}15` : 'white',
-                                borderColor: isSelected ? theme.colors.primary : undefined,
+                                borderColor: isSelected ? theme.colors.primary : '#e5e7eb',
                             }}
                         >
 
@@ -105,7 +104,10 @@ export default function DatePicker(
 									{/* Spot remaining */}
                                     <div className="flex items-center gap-1">
                                         <Users size={16} style={{ color: theme.colors.secondary  }} />
-                                        <span className={`font-semibold ${instance.spotsRemaining <= 3 ? 'text-red-400' : ''}`}>
+                                        <span
+                                            className="font-semibold"
+                                            style={{ color: instance.spotsRemaining <= 3 ? theme.colors.accent : undefined }}
+                                        >
                                             {instance.spotsRemaining} place{instance.spotsRemaining > 1 ? 's' : ''}
                                         </span>
                                     </div>

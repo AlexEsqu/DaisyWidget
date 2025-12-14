@@ -28,6 +28,7 @@ export default function BookingWidget(
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isBooked, setIsBooked] = useState(false);
 
+	// merging the potentially partial theme with the default to ensure data is accessible
 	const mergedTheme: Theme = {
         ...defaultTheme,
         ...theme,
@@ -78,15 +79,16 @@ export default function BookingWidget(
 				onBookClick={handleBookClick}
 			/>
 
-				<BookingModal
-					isOpen={isModalOpen}
-					onClose={() => setIsModalOpen(false)}
-					onConfirm={handleConfirmBooking}
-					workshop={workshop}
-					selectedInstance={selectedInstance}
-					isBooked={isBooked}
-					theme={mergedTheme}
-				/>
+			<BookingModal
+				isOpen={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+				onConfirm={handleConfirmBooking}
+				workshop={workshop}
+				selectedInstance={selectedInstance}
+				isBooked={isBooked}
+				theme={mergedTheme}
+			/>
+
 		</motion.div>
 	);
 }

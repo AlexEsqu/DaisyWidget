@@ -43,6 +43,7 @@ export default function WorkshopCard({
                 />
 
 				{/* Avatar */}
+				{/* wrapped in many div to get the original framing */}
 				{workshop.avatar && (
 					<div className="absolute bottom-0 left-2 translate-y-1/2">
 						<div className="relative w-34 h-38 shrink-0 -rotate-30 bg-white p-2 rounded-[50%_50%_50%_50%/65%_65%_35%_35%]">
@@ -104,7 +105,8 @@ export default function WorkshopCard({
                         disabled:opacity-50 disabled:cursor-not-allowed
                     `}
                     style={{
-                        backgroundColor: selectedInstance ? themeColors.primary : '#ccc'
+                        backgroundColor: selectedInstance ? themeColors.primary : '#ccc',
+                        borderColor: selectedInstance ? themeColors.primary : 'transparent'
                     }}
                 >
                     {!hasAvailableSpots
