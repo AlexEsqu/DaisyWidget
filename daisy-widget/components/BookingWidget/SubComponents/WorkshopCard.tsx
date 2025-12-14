@@ -43,9 +43,22 @@ export default function WorkshopCard({
             </div>
 
             <div className="p-6">
-                <h2 className="text-2xl font-bold mb-4" style={{ color: themeColors.primary }}>
-                    {workshop.title}
-                </h2>
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="relative w-24 h-28 shrink-0 rotate-[-30deg]"
+                         style={{ borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%', overflow: 'hidden' }}>
+                        <div className="relative w-full h-full rotate-[30deg] scale-110">
+                            <Image
+                                src={workshop.avatar}
+                                alt={`${workshop.title} avatar`}
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                    </div>
+                    <h2 className="text-2xl font-bold" style={{ color: themeColors.primary }}>
+                        {workshop.title}
+                    </h2>
+                </div>
 
                 <div className="space-y-3 mb-6">
                     <div className="flex items-center gap-2 text-gray-700">
