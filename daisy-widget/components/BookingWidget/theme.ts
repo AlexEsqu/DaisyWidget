@@ -1,3 +1,10 @@
+
+import { Montserrat } from "next/font/google";
+const montserrat = Montserrat({
+	subsets: ["latin"],
+	weight: ["400", "600", "700"],
+});
+
 export const daisyTheme = {
 	colors: {
 	pro: {
@@ -14,6 +21,6 @@ export const daisyTheme = {
 		pink: '#ffded4',
 	}
 	},
-	font: 'Montserrat',
+	font: montserrat,
 	borderRadius: '1rem',
 }

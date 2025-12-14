@@ -8,6 +8,8 @@ import WorkshopCard from './SubComponents/WorkshopCard';
 import DatePicker from './SubComponents/DatePicker';
 import BookingModal from './SubComponents/BookingModal';
 
+
+
 interface BookingWidgetProps {
 	workshop: Workshop;
 	onBook?: (date: Date) => void;
@@ -53,8 +55,7 @@ export default function BookingWidget({
 		initial={{ opacity: 0, y: 20 }}
 		animate={{ opacity: 1, y: 0 }}
 		transition={{ duration: 0.5 }}
-		className={`booking-widget w-full max-w-2xl mx-auto ${className}`}
-		style={{ fontFamily: daisyTheme.font }}
+		className={`booking-widget w-full max-w-2xl mx-auto ${daisyTheme.font.className} ${className}`}
 	>
 		<WorkshopCard
 		workshop={workshop}
