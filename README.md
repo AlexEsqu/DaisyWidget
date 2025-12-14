@@ -1,19 +1,115 @@
 # Booking Widget For Daisy
 
-## Research
+BookingWidget is a customizable booking widget which displays workshop information and allows users to select dates and confirm bookings.
+It was made in a day using Next.JS, TailwindCSS, and framer-motion, and set as a shadcn/ui custom component.
 
-### Definitions
+## Usage
+
+### Installation
+
+1. Import the BookingWidget component
+
+```tsx
+import BookingWidget from '@/components/BookingWidget';
+```
+
+2. (optional) Import or create a theme
+
+```tsx
+import { darkTechTheme } from '@/app/themes/theme';
+```
+
+3. Use the component
+
+```tsx
+export default function Page() {
+  return (
+    <BookingWidget
+		workshop={mockWorkshopWithoutAvatar}
+		onBook={(instance) => console.log("Booked:", instance)}
+		theme= {activeTheme} // optional
+	/>
+  );
+}
+```
+
+## Props
+
+### A `workshop` Object (required)
+
+Workshop data to display in the widget.
+
+**Properties:**
+- `id`: string - Unique identifier
+- `title`: string - Workshop name
+- `image`: string - Cover image URL
+- `avatar`: string | null - Instructor avatar URL (optional)
+- `location`: string - Workshop location
+- `instances`: WorkshopEventInstance[] - Available booking dates
+
+**Example:**
+```tsx
+const workshop = {
+  id: 'wk-1',
+  title: 'Atelier Peinture',
+  image: 'https://example.com/image.jpg',
+  avatar: 'https://example.com/avatar.png',
+  location: 'Paris, France',
+  instances: [
+    {
+      id: 'inst-1',
+      workshopId: 'wk-1',
+      price: 45,
+      date: new Date('2025-12-18T18:30:00'),
+      spotsRemaining: 5,
+    },
+  ],
+};
+```
+
+### A `theme` Object (optional)
+
+Customize the widget's appearance with your own theme.
+
+```tsx
+const customTheme = {
+  colors: {
+    primary: '#FF6B6B',
+    secondary: '#4ECDC4',
+    accent: '#95E1D3',
+  },
+  background: {
+    basic: '#FFFFFF',
+    heavy: '#F5F5F5',
+  },
+  fontFamily: 'Poppins, sans-serif',
+  fontColor: '#2C2C2C',
+  fontColorLight: '#999999',
+  borderRadius: '1rem',
+};
+
+<BookingWidget
+  workshop={workshop}
+  onBook={handleBook}
+  theme={customTheme}
+/>
+```
+
+
+# Research
+
+## Definitions
 
 **Widget**: small GUI appliction that provides some visual information and or easy access to frequently used functions
 
-### Technologies
+## Technologies
 
 - **Tailwind CSS**
 - **Next.JS**: fullstack React-based framework
 - **framer-motion**: graphical animation framework, good for smooth transitions
 - **shadcn/ui**: ui component library with integrated accessibility
 
-### Objective
+## Objective
 
 - Display workshop information :
 	- titre,
@@ -29,7 +125,7 @@
 - **Responsive**: mobile first
 - **Loyal to Daisy's product logic**
 
-### Benchmark
+## Benchmark
 
 Booking Widgets in general:
 - https://elfsight.com/appointment-booking-widget/
@@ -69,4 +165,15 @@ Booking Widgets in general:
 
 ## AI Policy
 
-I used AI in the making of this demo, specifically to fix NextJS syntax errors, generate mock data, kickstart the component building process with good practices, and to probe on the possible uses of the tech stack items I wasn't familiar with.
+I used LLM's input in the making of this demo, specifically to fix NextJS syntax errors, generate mock data, kickstart the component building process with good practices, and to probe on the possible uses of the tech stack items I wasn't familiar with.
+
+## Time
+
+I spent a total of 8 hours to complete this demo.
+As I started, my total experience with React was about 2 hours. Needless to say I learned a ton !
+
+# Conclusion
+
+With more experience, I would have incorporated the themes earlier in the data and code.
+Currently, the visual hierarchy is not as clear as I would like, and I haven't implemented fonts in a satisfactory manner.
+However, I consider this a good start of my front end dev experience, and an excellent opportunity to discover React and Next.JS.
