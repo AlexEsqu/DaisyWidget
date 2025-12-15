@@ -1,9 +1,10 @@
 import { Workshop } from "@/components/BookingWidget/types";
+import defaultCover from "@/public/defaultCover.jpg";
 
 export const mockWorkshop: Workshop = {
   id: "wk-1",
   title: "Atelier PaintF",
-  image: "https://site-assets.plasmic.app/a7cc2b75f4ab6f16b5d71059d345ef1a.jpg",
+  image: defaultCover.src,
   avatar: "https://site-assets.plasmic.app/07835041663d8a1eb3781df76288fcd7.png",
   location: "5, Parvis Alan Turing 75013 Paris",
   instances: [
@@ -42,7 +43,7 @@ export const mockWorkshop: Workshop = {
 export const mockWorkshopWithoutAvatar: Workshop = {
   id: "wk-1",
   title: "Atelier PaintF",
-  image: "https://site-assets.plasmic.app/a7cc2b75f4ab6f16b5d71059d345ef1a.jpg",
+  image: defaultCover.src,
   avatar: null,
   location: "5, Parvis Alan Turing 75013 Paris",
   instances: [

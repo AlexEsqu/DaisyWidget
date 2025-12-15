@@ -18,9 +18,9 @@ export interface Theme {
 
 export const defaultTheme = {
 	colors: {
-		primary: '#7d0080',
+		primary: '#f95441',
 		secondary: '#331b3b',
-		accent: '#f95441',
+		accent: '#7d0080',
 	},
 	background: {
 		basic: '#ffffff',

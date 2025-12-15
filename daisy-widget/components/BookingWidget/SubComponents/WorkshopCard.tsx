@@ -32,15 +32,18 @@ export default function WorkshopCard({
             className="overflow-visible rounded-3xl shadow-lg"
 			style={{ backgroundColor: theme.background.basic }}
         >
-            <div className="relative h-40 w-full">
+            <div className="relative h-40 w-full  pointer-events-none">
 
 				{/* Background image */}
-                <Image
-                    src={workshop.image}
-                    alt={workshop.title}
-                    fill
-                    className="object-cover rounded-t-md"
-                />
+				<div className="aspect-video">
+					<Image
+						src={workshop.image}
+						alt={workshop.title}
+						fill
+						className="object-cover rounded-t-md"
+						/>
+				</div>
+
 
 				{/* Avatar */}
 				{/* wrapped in many div to get the original framing */}

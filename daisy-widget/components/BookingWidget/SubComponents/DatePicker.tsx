@@ -67,7 +67,7 @@ export default function DatePicker(
             </div> */}
 
 			{/* Actual date picker container */}
-            <div className="flex flex-wrap gap-2">
+            <div className="grid grid-cols-2 gap-2">
                 {instances.map((instance) => {
                     const isSelected = selectedInstance?.id === instance.id;
                     const isAvailable = instance.spotsRemaining > 0;
@@ -81,10 +81,8 @@ export default function DatePicker(
                             whileHover={isAvailable ? { scale: 1.02 } : {}}
                             whileTap={isAvailable ? { scale: 0.98 } : {}}
                             className={`
-                                box-border shrink-0 grow basis-[calc(33.333%-0.75rem)]
-                                sm:basis-[calc(50%-0.75rem)] xs:basis-full
-                                min-w-44 p-3 rounded-xl text-center
-                                transition-colors duration-200 border-2
+                                p-3 rounded-xl text-center
+                    			transition-colors duration-200 border-2
                                 ${!isAvailable ? 'opacity-50 cursor-not-allowed' : ''}
                             `}
                             style={{
@@ -114,13 +112,13 @@ export default function DatePicker(
 									{/* Price */}
                                     <div className="flex items-center gap-1">
                                         <span className="font-semibold"
-										style={{ color: isSelected ? theme.colors.secondary : theme.colors.primary }}
+										style={{ color: isSelected ? theme.colors.primary : theme.fontColor }}
 										>{instance.price}€</span>
                                     </div>
 
 									{/* Spot remaining */}
                                     <div className="flex items-center gap-1">
-                                        <Users size={16} style={{ color: theme.colors.secondary  }} />
+                                        <Users size={16} style={{ color: instance.spotsRemaining <= 3 ? theme.colors.accent : theme.colors.secondary  }} />
                                         <span
                                             className="font-semibold"
                                             style={{
