@@ -24,7 +24,7 @@ export default function Home() {
 					// theme= {activeTheme}
 				/>
 
-				<BookingWidget
+				{/* <BookingWidget
 					workshop={mockWorkshopWithoutAvatar}
 					onBook={(instance) => console.log("Booked:", instance)}
 					theme= {activeTheme}
@@ -40,7 +40,7 @@ export default function Home() {
 					workshop={mockWorkshopWithoutAvatar}
 					onBook={(instance) => console.log("Booked:", instance)}
 					theme= {minimalistTheme}
-				/>
+				/> */}
 
 			</main>
 
