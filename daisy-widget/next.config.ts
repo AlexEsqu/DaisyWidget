@@ -1,19 +1,21 @@
 import type { NextConfig } from "next";
 
-const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const isProd = process.env.NODE_ENV === "production";
+const base = isProd ? "/DaisyWidget" : "";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  output: 'export',
   basePath: base,
   assetPrefix: base ? `${base}/` : "",
   images: {
     unoptimized: true,
     remotePatterns: [
-      { protocol: "https", hostname: "site-assets.plasmic.app" },
+      {
+        protocol: 'https',
+        hostname: 'site-assets.plasmic.app',
+      },
     ],
   },
 };
-
-
 
 export default nextConfig;

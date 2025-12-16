@@ -53,6 +53,8 @@ jobs:
         run: cd daisy-widget && npm ci
       - name: Build with Next.js
         run: cd daisy-widget && npx --no-install next build
+        env:
+          NODE_ENV: production
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
